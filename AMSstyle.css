@@ -1,0 +1,133 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.header {
+	display: flex;
+	border-bottom: 1px solid;
+	margin-bottom: 10px;
+}
+
+.navItem:hover {
+	background-color: rgb(50, 200, 200);
+	cursor: pointer;
+}
+
+.project-logo {
+	width: 70px;
+	height: 70px;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.profile-icon {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin: 20px;
+	margin-left: auto;
+	cursor: pointer;
+}
+
+.menu-btn {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+	border: 2px solid #000;
+	margin-left: 10px;
+}
+
+.menu-btn__burger {
+	width: 15px;
+	height: 2px;
+	background-color: #000;
+	transition: all 0.5s ease-in-out;
+}
+
+.menu-btn__burger::before, .menu-btn__burger::after {
+	content: '';
+	position: absolute;
+
+	width: 15px;
+	height: 2px;
+	background-color: #000;
+	transition: all 0.5s ease-in-out;
+}
+
+.menu-btn__burger::before {
+	transform: translateY(-8px);
+}
+
+.menu-btn__burger::after {
+	transform: translateY(8px);
+}
+
+.menu-btn.open .menu-btn__burger {
+	transform: translateX(-30px);
+	background: transparent;
+}
+
+.menu-btn.open .menu-btn__burger::before {
+	transform: rotate(45deg) translate(20px, -20px);
+}
+
+.menu-btn.open .menu-btn__burger::after {
+	transform: rotate(-45deg) translate(20px, 20px);
+}
+
+.menu-container {
+	float: left;
+}
+
+.menu {
+	margin-left: 10px;
+	width: 150px;
+}
+
+.menu a {
+	height: 50px;
+	font-size: 20px;
+	background-color: #555;
+	color: #fff;
+	text-decoration: none;
+
+	display: flex;
+	align-items: center;
+	padding-left: 5px;
+	transition: all 0.5s ease-in-out;
+}
+
+.menu a:hover {
+	background-color: #000;
+	color: #fff;
+}
+
+.courses-frame {
+	margin-left: 160px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.course-box {
+	padding: 1vw;
+	margin: 0;
+	display: block;
+}
+
+.course-box img {
+	width: 300px;
+	height: 250px;
+}
+
+.course-box label {
+	font-size: large;
+	display: block;
+	text-align: center;
+}
