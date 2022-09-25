@@ -1,3 +1,5 @@
+DROP DATABASE ProjectAMS;
+
 CREATE DATABASE IF NOT EXISTS ProjectAMS;
 
 USE ProjectAMS;
@@ -9,11 +11,18 @@ CREATE TABLE  IF NOT EXISTS Teachers(
     password VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE  IF NOT EXISTS CourseImages(
+    imageID VARCHAR(10) NOT NULL PRIMARY KEY,
+    image MEDIUMBLOB
+);
+
 CREATE TABLE  IF NOT EXISTS Courses(
     courseName VARCHAR(50) NOT NULL,
     courseID VARCHAR(10) NOT NULL PRIMARY KEY,
     teacherID VARCHAR(10) NOT NULL,
-    FOREIGN KEY (teacherID) REFERENCES Teachers(teacherID)
+    FOREIGN KEY (teacherID) REFERENCES Teachers(teacherID),
+    courseImageID VARCHAR(10) NOT NULL,
+    FOREIGN KEY (courseImageID) REFERENCES CourseImages(imageID)
 );
 
 CREATE TABLE  IF NOT EXISTS Assignments(
@@ -73,54 +82,28 @@ CREATE TABLE  IF NOT EXISTS Notifications (
     readStatus TINYINT(1)
 );
 
+INSERT INTO Teachers Values ("TID001", "Sanjaya Acharya", "sanjayaacharya22780@gmail.com", "5d41402abc4b2a76b9719d911017c592");
+INSERT INTO Teachers Values ("TID002", "Sanjay Pahari", "paharisanzay@gmail.com", "5d41402abc4b2a76b9719d911017c592");
+INSERT INTO Teachers Values ("TID003", "Nishanta Paudel", "paudelnishanta@gmail.com", "5d41402abc4b2a76b9719d911017c592");
 
--- desc Teachers;
--- desc Courses;
--- desc Assignments;
--- desc Students;
--- desc Enrolments;
--- desc Marks;
+-- INSERT INTO Courses(ID,IMAGE) VALUES(1,);
 
-INSERT INTO Teachers Values (1, "Sanjaya Acharya", "sanjayaacharya22780@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Teachers Values (2, "Sanjay Pahari", "paharisanzay@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Teachers Values (3, "Nishanta Paudel", "paudelnishanta@gmail.com", "5d41402abc4b2a76b9719d911017c592");
+-- INSERT INTO Courses Values ("CID001", "Maths", "TID001", LOAD_FILE('E:/Images/jack.jpg'));
 
-INSERT INTO Courses Values (101, "Biology", 3);
-INSERT INTO Courses Values (102, "Maths", 1);
-INSERT INTO Courses Values (103, "Chemistry", 2);
-INSERT INTO Courses Values (104, "Physics", 2);
-INSERT INTO Courses Values (105, "C", 3);
-INSERT INTO Courses Values (106, "C++", 1);
+INSERT INTO Courses Values ("CID001", "Maths", "TID001", "Img001");
+INSERT INTO Courses Values ("CID002", "Physics", "TID001", "Img002");
+INSERT INTO Courses Values ("CID003", "English", "TID002", "Img003");
+INSERT INTO Courses Values ("CID004", "Social Studies", "TID002", "Img004");
+INSERT INTO Courses Values ("CID005", "Computer Science", "TID003", "Img005");
 
-INSERT INTO Assignments Values (1001, "Assignment 1", 2022-12-01, 2022-12-07, 101);
-INSERT INTO Assignments Values (1002, "Assignment 1", 2022-12-01, 2022-12-07, 102);
-INSERT INTO Assignments Values (1003, "Assignment 2", 2022-12-01, 2022-12-07, 102);
-INSERT INTO Assignments Values (1004, "Assignment 2", 2022-12-01, 2022-12-07, 101);
-INSERT INTO Assignments Values (1005, "Assignment 3", 2022-12-01, 2022-12-07, 101);
-INSERT INTO Assignments Values (1006, "Assignment 1", 2022-12-01, 2022-12-07, 103);
-INSERT INTO Assignments Values (1007, "Assignment 4", 2022-12-01, 2022-12-07, 101);
-INSERT INTO Assignments Values (1008, "Assignment 1", 2022-12-01, 2022-12-07, 105);
-INSERT INTO Assignments Values (1009, "Assignment 1", 2022-12-01, 2022-12-07, 106);
-INSERT INTO Assignments Values (1010, "Assignment 2", 2022-12-01, 2022-12-07, 106);
-INSERT INTO Assignments Values (1011, "Assignment 2", 2022-12-01, 2022-12-07, 105);
-INSERT INTO Assignments Values (1012, "Assignment 1", 2022-12-01, 2022-12-07, 104);
+INSERT INTO CourseImages Values ("Img001", LOAD_FILE('C:\xampp\htdocs\AMS\profile-icon.png'));
 
-INSERT INTO Students Values (10001, "Student 001", "student01@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10002, "Student 002", "student02@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10003, "Student 003", "student03@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10004, "Student 004", "student04@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10005, "Student 005", "student05@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10006, "Student 006", "student06@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10007, "Student 007", "student07@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10008, "Student 008", "student08@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10009, "Student 009", "student09@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10010, "Student 010", "student10@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10011, "Student 011", "student11@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10012, "Student 012", "student12@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10013, "Student 013", "student13@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10014, "Student 014", "student14@gmail.com", "5d41402abc4b2a76b9719d911017c592");
-INSERT INTO Students Values (10015, "Student 015", "student15@gmail.com", "5d41402abc4b2a76b9719d911017c592");
 
+
+INSERT INTO Students Values ("SID001", "Dipesh Gautam", "dg001@gmail.com", "5d41402abc4b2a76b9719d911017c592");
+INSERT INTO Students Values ("SID002", "Ajit Baniya", "ab02@gmail.com", "5d41402abc4b2a76b9719d911017c592");
+INSERT INTO Students Values ("SID003", "Bibek Bhattrai", "bb03@gmail.com", "5d41402abc4b2a76b9719d911017c592");
+INSERT INTO Students Values ("SID004", "Sumin Gurung", "sg04@gmail.com", "5d41402abc4b2a76b9719d911017c592");
 
 SELECT * FROM Teachers;
 SELECT * FROM Courses;

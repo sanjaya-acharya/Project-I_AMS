@@ -134,4 +134,7 @@ viewMarks(StudentID)
 
 <br/>
 
-<!--  -->
+### Tasks
+Front-end - Sanjay Pahari and Nishanta Paudel <br/>
+Database  - Nishanta Paudel <br/>
+Back-end  - Sanjaya Acharya
