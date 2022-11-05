@@ -51,7 +51,9 @@ CREATE TABLE  IF NOT EXISTS Courses(
 	teacherID INT(5) NOT NULL,
 	FOREIGN KEY (teacherID) REFERENCES Teachers(teacherID),
 	imageID INT(5) NOT NULL,
-	FOREIGN KEY (imageID) REFERENCES CourseImages(imageID)
+	FOREIGN KEY (imageID) REFERENCES CourseImages(imageID),
+
+	UNIQUE(courseName, imageID)
 );
 
 INSERT INTO Courses Values (42418, "Maths", 38523, 30642);
@@ -147,22 +149,22 @@ INSERT INTO Works Values (44705, "Answers.pdf", "2022-11-09", 0, 11514, 46679);
 INSERT INTO Works Values (55478, "Answers.pdf", "2022-11-09", 0, 36386, 11255);
 INSERT INTO Works Values (64831, "Answers.pdf", "2022-11-09", 0, 98689, 78418);
 
-CREATE TABLE  IF NOT EXISTS Reviews (
-	message VARCHAR(255),
+-- CREATE TABLE  IF NOT EXISTS Reviews (
+-- 	message VARCHAR(255),
 
-	studentID INT(5) NOT NULL,
-	FOREIGN KEY (studentID) REFERENCES Students(studentID),
-	assignmentID INT(5) NOT NULL,
-	FOREIGN KEY (assignmentID) REFERENCES Assignments(assignmentID),
-	UNIQUE (assignmentID, studentID)
-);
+-- 	studentID INT(5) NOT NULL,
+-- 	FOREIGN KEY (studentID) REFERENCES Students(studentID),
+-- 	assignmentID INT(5) NOT NULL,
+-- 	FOREIGN KEY (assignmentID) REFERENCES Assignments(assignmentID),
+-- 	UNIQUE (assignmentID, studentID)
+-- );
 
-INSERT INTO Reviews Values ("Answers are incorrect", 93893, 46679);
-INSERT INTO Reviews Values ("Answers are incorrect", 93893, 11255);
-INSERT INTO Reviews Values ("Resubmit this assignment", 86680, 46679);
-INSERT INTO Reviews Values ("Answers are incorrect", 50485, 11255);
-INSERT INTO Reviews Values ("Answers are incorrect", 15789, 46679);
-INSERT INTO Reviews Values ("Resubmit this assignment", 11514, 46679);
+-- INSERT INTO Reviews Values ("Answers are incorrect", 93893, 46679);
+-- INSERT INTO Reviews Values ("Answers are incorrect", 93893, 11255);
+-- INSERT INTO Reviews Values ("Resubmit this assignment", 86680, 46679);
+-- INSERT INTO Reviews Values ("Answers are incorrect", 50485, 11255);
+-- INSERT INTO Reviews Values ("Answers are incorrect", 15789, 46679);
+-- INSERT INTO Reviews Values ("Resubmit this assignment", 11514, 46679);
 
 CREATE TABLE  IF NOT EXISTS Marks (
 	Marks INT(3) NOT NULL,
@@ -192,3 +194,52 @@ CREATE TABLE IF NOT EXISTS Notifications (
 INSERT INTO Notifications (message, ownerID, sentDate, sentTime) Values ("Welcome!", 38523, "2022-11-09", "12:30");
 INSERT INTO Notifications (message, ownerID, sentDate, sentTime) Values ("New assignment Submitted!", 38523, "2022-11-09", "12:30");
 INSERT INTO Notifications (message, ownerID, sentDate, sentTime) Values ("Password Changed!", 38523, "2022-11-09", "12:30");
+
+
+
+-- Deleting notification
+DELETE FROM Notifications where notificationID=002780;
+DELETE FROM Notifications where ownerID=002780;
+
+
+-- Deleting marks
+DELETE FROM Marks WHERE workID=002780;
+
+
+-- Deleting work
+-- Deleting files first
+-- SELECT workFileURL FROM Works WHERE workID=?;
+-- unlink('../../files/work-files/'.$workFileURL); // Loop and delete all files
+DELETE FROM Marks WHERE workID=002780;
+DELETE FROM Works where workID=002780;
+
+
+-- Deleting enrolments
+DELETE FROM Enrolments WHERE studentID=002780 AND courseID=002780;
+
+-- Deleting assignment
+-- Deleting question first
+-- SELECT questionURL FROM Assignments WHERE assignmentID=? LIMIT 1;
+-- unlink('../../files/assignment-questions/'.$questionURL); // Loop and delete all files
+-- Deleting works now
+-- SELECT workFileURL FROM Works NATURAL JOIN Assignments WHERE assignmentID=?;
+-- unlink('../../files/work-files/'.$workFileURL); // Loop and delete all files
+DELETE Marks FROM Marks JOIN Works ON Marks.workID=Works.workID NATURAL JOIN Assignments WHERE assignmentID=002780;
+DELETE Works FROM Works NATURAL JOIN Assignments WHERE assignmentID=002780;
+-- Deleting assignments now
+DELETE FROM Assignments WHERE assignmentID=002780;
+
+-- Deleting course
+-- Deleting assignments first
+-- Deleting question
+-- SELECT questionURL FROM Assignments NATURAL JOIN Courses WHERE courseID=?;
+-- unlink('../../files/assignment-questions/'.$questionURL); // Loop and delete all files
+-- Deleting works now
+-- SELECT workFileURL FROM Works NATURAL JOIN Assignments NATURAL JOIN Courses WHERE courseID=?;
+-- unlink('../../files/work-files/'.$workFileURL); // Loop and delete all files
+DELETE Marks FROM Marks JOIN Works ON Marks.workID=Works.workID NATURAL JOIN Assignments NATURAL JOIN Courses WHERE courseID=002780;
+DELETE Works FROM Works NATURAL JOIN Assignments NATURAL JOIN Courses WHERE courseID=002780;
+-- Deleting assignments
+DELETE FROM Assignments NATURAL JOIN Courses WHERE courseID=002780;
+-- Deleting enrolments
+DELETE FROM Enrolments WHERE courseID=002780;

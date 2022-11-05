@@ -15,22 +15,6 @@ function manageFilters (e) {
 
     el.classList.add('active-filter');
 
-    // if (text == "All") {
-    //     showNoWorkBox('.no-work-at-all');
-    //     document.querySelector('.to-review-container').style.visibility = "visible";
-    //     document.querySelector('.reviewed-container').style.visibility = "visible";
-    // } else if (text == "To Review") {
-    //     showNoWorkBox('.no-work-to-review');
-    //     document.querySelector('.to-review-container').style.visibility = "visible";
-    //     document.querySelector('.reviewed-container').style.visibility = "hidden";
-    // } else if (text == "Reviewed") {
-    //     showNoWorkBox('.no-work-reviewed');
-    //     document.querySelector('.to-review-container').style.visibility = "hidden";
-    //     document.querySelector('.reviewed-container').style.visibility = "visible";
-    // }
-
-
-
     if (text == "All") {
         showNoWorkBox('.no-work-at-all');
         if (document.querySelector('.to-review-container').innerHTML != "") {

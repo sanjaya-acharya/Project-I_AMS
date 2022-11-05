@@ -22,14 +22,33 @@
 	<?php
 		require_once('../../imports/navbar.php');
 	?>
+
 	<div class="nav-menu-container">
 		<a class="add-course" href="../add-course/">Add Course</a>
-		<a class="to-review" href="../to-review/">To Review</a>
 	</div>
 
 	<?php
 		require_once('../../imports/courses.php');
+
+		if (isset($_GET['msg'])) {
+					echo "<div class='temp-message' style='color: red; font-size: 30px; font-weight: bold; margin-left: 15vw; margin-top: 20px;'>" . $_GET['msg'] . "</div>";
+					?>
+						<script>
+							window.scrollTo(0, document.body.scrollHeight);
+						</script>
+					<?php
+		} else {
+			echo "<div class='temp-message'></div>";
+		}
 	?>
 
 </body>
 </html>
+
+<script>
+let tempMsgBox = document.querySelector(".temp-message");
+setTimeout(() => {
+	tempMsgBox.style.display = "none";
+}, 2000);
+
+</script>

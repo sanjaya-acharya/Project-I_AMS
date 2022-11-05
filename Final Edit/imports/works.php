@@ -95,6 +95,7 @@
 			?>
 			<script>
 				document.querySelector('.no-work-at-all').innerHTML = "No Works submitted!<br /><a clas='only-for-teachers' href='./remind-all/'>Remind missing students</a>";
+				document.querySelector('.no-work-at-all').style.display = "block";
 			</script>
 		<?php
 }

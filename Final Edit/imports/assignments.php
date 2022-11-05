@@ -4,6 +4,7 @@
 <?php
 	if (!(isset($_GET['c']))) {
 		header('Location: ../dashboard?err=select-a-course');
+		exit();
 	}
 
 	$sql = "SELECT imageURL FROM courseImages NATURAL JOIN courses WHERE courseID=?";
@@ -29,7 +30,7 @@
 		$stmt->close();
 
 		if ($result->num_rows == 0) {
-			echo "<div class='no-assignment'>No Assignments!<br /><a clas='only-for-teachers' href='./add-assignment/'>Create New</a></div>";
+			echo "<div class='no-assignment'>No Assignments!<br /><a clas='only-for-teachers' href='../add-assignment/?c=".$_GET['c']."'>Create New</a></div>";
 		} else {
 			while ($row = $result->fetch_assoc()) {
 				$sql = "SELECT checkedStatus FROM Works NATURAL JOIN Assignments WHERE assignmentID=? AND checkedStatus=0 LIMIT 100";

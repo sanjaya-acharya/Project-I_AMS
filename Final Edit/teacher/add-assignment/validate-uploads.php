@@ -1,7 +1,7 @@
 <?php
     function isValid($file_name, $file_size, $tmp_name, $error){
         if ($error === 0) {
-            if ($file_size > 25*1024*1024) { // file must be less than 25MB
+            if ($file_size > 25*1024*1024 /* file must be less than 25MB */ ) {
                 $_SESSION['create-assignment-error'] = "File too large!";
                 return false;
             } else {
@@ -15,19 +15,10 @@
                     $_SESSION['create-assignment-error'] = "File not supported";
                     return false;
                 }
-    
-                    // Now inserting into database
-                    // $sql = "INSERT INTO courseImages VALUES ('file005', '$new_file_name')";
-                    // mysqli_query($conn, $sql);
-                    // header("Location: view.php");
-                    // } else {
-                    //     header("Location: index.php?error=$em");
-                    // }
             }
         } else {
             $_SESSION['create-assignment-error'] = "Unknown error occured!";
             return false;
-            // header("Location: index.php?error=$em");
         }
     }
 

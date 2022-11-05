@@ -11,7 +11,7 @@
         $stmt->close();
 
         if ($result->num_rows == 0) {
-            echo "<div class='no-course'>No Courses!<br /><a clas='only-for-teachers' href='./add-course/'>Create New</a></div>";
+            echo "<div class='no-course'>No Courses!<br /><a clas='only-for-teachers' href='../add-course/'>Create New</a></div>";
         } else {
             while ($row = $result->fetch_assoc()) {
                 echo "<a class='course-box' href='../view-course?c=".$row['courseID']."'>
@@ -22,10 +22,3 @@
         }
     ?>
 </div>
-
-<style>
-
-.course-container {
-    width: 10vw;
-}
-</style>

@@ -52,14 +52,14 @@
 
 	<div class="container">
 		<div class="answer">
-			<iframe src="../../files/assignment-files/<?= $workFileURL ?>#toolbar=0" frameborder="1"></iframe>
+			<iframe src="../../files/work-files/<?= $workFileURL ?>#toolbar=0" frameborder="1"></iframe>
 			<div class="buttons">
 				<div class="disqualify-assignment">Disqualify Assignment</div>
 				<div class="download-assignment">Download</div>
 			</div>
 		</div>
 	
-		<form action="./" class='review-form'>
+		<form action="" class='review-form'>
 			<div class="message">
 				<label>Comment <span style="color: red;">(Optional)</span> </label>
 				<input type="text" name="message">

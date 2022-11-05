@@ -1,3 +1,7 @@
+body {
+	overflow-x: hidden;
+}
+
 .courses-container {
 	margin-left: 200px;
 	margin-right: 20px;
@@ -6,8 +10,10 @@
 }
 
 .no-course {
-    padding-top: 20px;
-    text-align: center;
+	font-size: 30px;
+	text-align: center;
+    padding: 30px;
+	background-color: #cee;
 }
 
 .course-box {
