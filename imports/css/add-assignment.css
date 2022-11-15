@@ -1,0 +1,12 @@
+input[type=file] {
+    border: 1px solid black;
+}
+
+.message {
+    color: red;
+    font-weight: bold;
+}
+
+*:disabled {
+    cursor: no-drop;
+}
